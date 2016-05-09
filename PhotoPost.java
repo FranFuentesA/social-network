@@ -1,26 +1,32 @@
 import java.util.ArrayList;
+
 /**
- * Write a description of class er here.
+ * Esta clase representa los mensajes publicados en la red social asociados a fotos.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class  MessagePost {
+public class PhotoPost
+{
     private String username;
-    private String message;
+    private String filename;
+    private String caption;
     private long timestamp;
     private int likes;
     private ArrayList<String> comments;
+
     /**
-     * Constructor de la clase
-     */   
-    public MessagePost (String author, String text)
+     * Constructor for objects of class PhotoPost
+     */
+    public PhotoPost(String author, String filename, String caption)
     {
-        this.username = author;
-        this.message = text;
+        // initialise instance variables
+       this.username = author;;
+        this.filename = filename;
+        this.caption = caption;
         this.timestamp = System.currentTimeMillis();
         this.likes = 0;
-        comments = new ArrayList<>();
+        comments = new ArrayList<String>();
     }
 
     /**
@@ -32,8 +38,8 @@ public class  MessagePost {
     }
 
     /**
-    * Metodo que disminuye los likes de uno en uno, si es cero no realiza nada.
-    */
+     * Metodo que disminuye los likes de uno en uno, si es cero no realiza nada.
+     */
     public void unlike()
     {
         if(likes > 0)
@@ -43,8 +49,7 @@ public class  MessagePost {
     }
 
     /**
-     * Añade un comentario al mensaje
-     * @param text el comentario a añadir
+     * Añade un comentario al mensaje     
      */
     public void addComment(String text)
     {
@@ -52,20 +57,28 @@ public class  MessagePost {
     }
 
     /**
-     * Metodo que devuelve todo el texto del post     
-     **/
-    public String getText()
+     * Metodo que devuelve el nombre del archivo
+     */
+    public String getImageFile()
     {
-        return message;
+        return filename;
     }
 
     /**
-     * Metodo que devuelve el momento temporal en el que fue creado
+     *  Metodo que devuelve el texto del mensaje     
      */
-    public long getTimeStamp()
+    public String getCaption()
+    {
+        return caption;
+    }
+
+    /**
+     * Devuelve el timestamp del mensaje
+     */
+    public long getTimestamp()
     {
         return timestamp;
-    }   
+    }
 
     /**
      * Metodo que muestra todos los datos del post
@@ -73,8 +86,8 @@ public class  MessagePost {
     public void display()
     {
         System.out.println("Autor " + username);
-        System.out.println("Likes " + likes);
-        // si la colleccion esta vacia, informamos por pantalla
+        System.out.println("Likes " + likes);;
+        System.out.println(caption);       
         if(comments.size() == 0)
         {
             System.out.println( "Lo siento, no hay comentarios");
@@ -88,9 +101,7 @@ public class  MessagePost {
             }
         }
         
-        // Mostramos por pantalla la informacion a traves del siguiente metodo:
-        System.out.println(timeString(System.currentTimeMillis()));
-
+        System.out.println("Fecha de publicacion " + timeString(System.currentTimeMillis()));
     }
 
     /**
@@ -100,7 +111,7 @@ public class  MessagePost {
         long tiempo = (time - timestamp);
         int segundos = (int)(tiempo/1000);
         int minutos = (segundos/60);
-        segundos -= minutos* 60;  
+        segundos -= minutos * 60;  
         int horas = 0;
         String texto = minutos + " minutos " + segundos + " segundos";
         if (minutos > 59) {        
@@ -114,5 +125,5 @@ public class  MessagePost {
         
         return texto;        
     }
-}
 
+}
