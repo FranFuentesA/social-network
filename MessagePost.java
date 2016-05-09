@@ -81,7 +81,7 @@ public class  MessagePost {
         }
         //mostramos todos los comentarios recorriendo toda la coleccion
         else
-        {		   			   
+        {                      
             for( String comment : comments)
             {
                 System.out.println(comment);
@@ -100,8 +100,18 @@ public class  MessagePost {
         long tiempo = (time - timestamp);
         int segundos = (int)(tiempo/1000);
         int minutos = (segundos/60);
-        segundos -= minutos*60;
+        segundos -= minutos*60;  
+        int horas = 0;
         String texto = minutos + " minutos " + segundos + " segundos";
+        if (minutos > 59) {        
+             horas = (minutos * 60);   
+            texto += horas + " horas ";
+        }
+        if (horas > 23){            
+            int dias = horas/24;   
+            texto += dias + " dias ";
+        }
+        
         return texto;        
     }
 }
